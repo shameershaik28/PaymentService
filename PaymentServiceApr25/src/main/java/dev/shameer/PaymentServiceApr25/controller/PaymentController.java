@@ -16,7 +16,8 @@ public class PaymentController {
 
     @PostMapping("/payment")
     public ResponseEntity generatePaymentLink(@RequestBody PaymentLinkReqDTO paymentLinkReqDTO) {
-        String paymentLink = paymentService.generatePaymentLink(paymentLinkReqDTO.getOrderId(),
+        String paymentLink = paymentService.generatePaymentLink(
+                paymentLinkReqDTO.getOrderId(),
                 paymentLinkReqDTO.getUserId(),
                 paymentLinkReqDTO.getAmount());
         return ResponseEntity.ok(paymentLink);

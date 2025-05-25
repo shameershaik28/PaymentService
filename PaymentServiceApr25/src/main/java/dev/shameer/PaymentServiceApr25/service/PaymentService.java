@@ -11,10 +11,11 @@ public class PaymentService {
 
     @Autowired
     private PaymentRepository paymentRepository;
-    //@Autowired
+    @Autowired
+    @Qualifier("stripePayment")
     private PaymentGateway paymentGateway;
 
-    public String generatePaymentLink(String orderId, String userId, double amount){
+    public String generatePaymentLink(String orderId, String userId, long amount){
         String paymentLink = paymentGateway.generatePaymentLink(orderId, amount, userId);
         return paymentLink;
     }
