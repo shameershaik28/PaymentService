@@ -8,5 +8,5 @@ import lombok.Setter;
 public class PaymentLinkReqDTO {
     private String orderId;
     private String userId;
-    private double amount;
+    private long amount;
 }

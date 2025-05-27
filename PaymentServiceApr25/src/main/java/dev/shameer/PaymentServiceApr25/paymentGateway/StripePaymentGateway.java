@@ -11,12 +11,11 @@ import org.springframework.stereotype.Component;
 @Component("stripePayment")
 public class StripePaymentGateway implements PaymentGateway{
 
-    private String stripeAPIKey = "something";
 
 
     @Override
     public String generatePaymentLink(String orderId, long amount, String userId) throws StripeException {
-        Stripe.apiKey = stripeAPIKey;
+        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");;
 
         // price parameter object -> contains all necessary metadata for pricing
         PriceCreateParams priceCreateParams =
@@ -46,7 +45,7 @@ public class StripePaymentGateway implements PaymentGateway{
                                 PaymentLinkCreateParams.AfterCompletion.builder()
                                         .setType(PaymentLinkCreateParams.AfterCompletion.Type.REDIRECT)
                                         .setRedirect(PaymentLinkCreateParams.AfterCompletion.Redirect.builder()
-                                                .setUrl("callback URL")
+                                                .setUrl("https://www.scaler.com")
                                                 .build()
                                         )
                                         .build()
